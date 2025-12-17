@@ -1,37 +1,45 @@
 package bva_desciisionTable.bva_desciisionTable;
+
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 public class MinCalculatorTest {
-    
-	 @Test
-	    void testAIsZero_shouldThrowException() {
-	        // arrange
-	        int a = 0;   // ערך לא חוקי
-	        int b = 50;
-	        int c = 50;
-	        int d = 50;
-	        int e = 50;
 
-	        // act + assert
-	        assertThrows(IllegalArgumentException.class, () -> {
-	        	MinCalculator.findMin(a, b, c, d, e);
-	        });
-	    }
+    @Test
+    void a_min_minus_1() {
+        MinCalculator mc = new MinCalculator();
+        assertThrows(IllegalArgumentException.class,
+            () -> mc.findMin(0,50,50,50,50));
+    }
 
-	 @Test
-	    void testAIsOne_shouldReturnMinimum() {
-	        // arrange
-	        int a = 10;    // ערך גבול תקין
-	        int b = 50;
-	        int c = 50;
-	        int d = 50;
-	        int e = 50;
+    @Test
+    void a_min() {
+        MinCalculator mc = new MinCalculator();
+        assertEquals(1, mc.findMin(1,50,50,50,50));
+    }
 
-	        // act
-	        int result = MinCalculator.findMin(a, b, c, d, e);
+    @Test
+    void a_min_plus_1() {
+        MinCalculator mc = new MinCalculator();
+        assertEquals(2, mc.findMin(2,50,50,50,50));
+    }
 
-	        // assert
-	        assertEquals(10, result);   // 1 הוא הערך המינימלי
-	    }
+    @Test
+    void a_nominal() {
+        MinCalculator mc = new MinCalculator();
+        assertEquals(50, mc.findMin(50,50,50,50,50));
+    }
+
+    @Test
+    void a_max() {
+        MinCalculator mc = new MinCalculator();
+        assertEquals(5, mc.findMin(1000,5,6,7,8));
+    }
+
+    @Test
+    void a_max_plus_1() {
+        MinCalculator mc = new MinCalculator();
+        assertThrows(IllegalArgumentException.class,
+            () -> mc.findMin(1001,50,50,50,50));
+    }
 }
